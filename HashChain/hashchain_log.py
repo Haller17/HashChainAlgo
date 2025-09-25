@@ -7,7 +7,7 @@ from typing import Optional
 LOG_PATH = "security_audit.log"
 
 
-def _sha256_hex(data: bytes) -> str: #Returns hex number into String
+def _SHA_hex(data: bytes) -> str: #Returns hex number into String
     return hashlib.sha256(data).hexdigest()
 
 #Creates a JSON object that contains the previous entry's hash and the current entry hash
@@ -15,7 +15,7 @@ def _sha256_hex(data: bytes) -> str: #Returns hex number into String
 #Returns the given string from the prev and current. If either changes later, the hash wont match, and will output false
 def _compute_line_hash(prev_hash: str, payload: dict) -> str:
     serialized = json.dumps({"prev": prev_hash, "payload": payload}, sort_keys=True).encode()
-    return _sha256_hex(serialized)
+    return _SHA_hex(serialized)
 
 
 @dataclass
@@ -109,3 +109,4 @@ class HashChainLogger:
                 chain_prev = record["hash"]
 
         return True
+

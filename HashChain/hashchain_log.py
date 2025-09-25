@@ -110,3 +110,4 @@ class HashChainLogger:
 
         return True
 
+

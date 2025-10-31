@@ -13,19 +13,3 @@ Each entry includes the SHA-256 hash of the **previous** entry and of the **curr
 - `verify()` recomputes expected hashes in sequence and returns **True/False**.
 
 ---
-
-## Example Usage
-
-```python
-from audit_logger import HashChainLogger  # rename to your module name
-
-# Optional: choose a log file path (default: security_audit.log)
-logger = HashChainLogger(path="security_audit.log")
-
-# Write entries
-logger.append(actor="service/api", action="LOGIN_SUCCESS", details={"user_id": "123"})
-logger.append(actor="service/db",  action="UPDATE",         details={"table": "orders", "id": 42})
-
-# Verify the entire log
-ok = logger.verify()
-print("Chain valid?", ok)
